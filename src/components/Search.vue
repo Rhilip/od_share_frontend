@@ -68,7 +68,7 @@
         this.search_data = [];
         this.search_load = true;
         this.$Loading.start();
-        axios.get(`http://share-api.rhilip.info/search${this.search_key ? '/' + this.search_key : ''}`).then((response) => {
+        axios.get(`//share-api.rhilip.info/search${this.search_key ? '/' + this.search_key : ''}`).then((response) => {
           this.search_load = false;
           this.$Loading.finish();
           this.search_data = response.data.data;

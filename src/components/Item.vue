@@ -53,7 +53,7 @@
       },
 
       getItemDetails() {
-        axios.get(`http://share-api.rhilip.info/items/${this.$route.params.uuid}`).then((response) => {
+        axios.get(`//share-api.rhilip.info/items/${this.$route.params.uuid}`).then((response) => {
           this.loading = false;
           this.item = response.data.data;
         });

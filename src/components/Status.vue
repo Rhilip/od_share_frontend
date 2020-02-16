@@ -57,7 +57,7 @@
 
       getStatus() {
         this.$Loading.start();
-        axios.get("http://share-api.rhilip.info/status").then((response) => {
+        axios.get("//share-api.rhilip.info/status").then((response) => {
           this.$Loading.finish();
           if (response.status === 200) {
             let data = response.data;
