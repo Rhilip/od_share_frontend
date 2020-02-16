@@ -1,24 +1,16 @@
 # od_share_frontend
 
-## Project setup
-```
-yarn install
-```
+基于 多 OneDrive 帐号 资源分享 的 **前端** 解决方案。
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+网址 ： http://share.rhilip.info/
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## 展示
 
-### Lints and fixes files
-```
-yarn lint
-```
+ - 搜索页面
+    ![list.png](https://i.loli.net/2020/02/16/8VsGze6pdfDIhQa.png)
+ - 搜索页面
+    ![items.png](https://i.loli.net/2020/02/16/Z7v6qPb5KYMLFfT.png)
+ - 后端状况页面
+    ![status.png](https://i.loli.net/2020/02/16/d8CvSQEGZot6blw.png)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
