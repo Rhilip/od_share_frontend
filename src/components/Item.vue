@@ -8,7 +8,7 @@
                 <div v-else-if="item">
                     <h3>{{item.title}}</h3>
                     <div>
-                        档案大小： <span>{{humanFileSize(item.size)}}</span>
+                        档案大小： <span>{{ item.size | humanFileSize }}</span>
                     </div>
                     <div>
                         档案链接： <a target="_blank" @click="openRawLink()">点击打开</a>
@@ -43,11 +43,6 @@
       '$route': 'getItemDetails'
     },
     methods: {
-      humanFileSize(size) {
-        let i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
-        return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-      },
-
       openRawLink() {
         window.open(this.item.raw_link,'_blank');
       },

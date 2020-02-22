@@ -45,7 +45,7 @@
           {
             title: "大小", key: "size", width: 120, align: "right",
             render: (h, params) => {
-              return h('p', {}, this.humanFileSize(params.row.size));
+              return h('p', {}, this.$options.filters.humanFileSize(params.row.size));
             },
             className: "text-right"
           },
@@ -59,11 +59,6 @@
       }
     },
     methods: {
-      humanFileSize(size) {
-        let i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
-        return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-      },
-
       updateItems() {
         this.search_data = [];
         this.search_load = true;

@@ -3,10 +3,10 @@
         <div v-if="status">
             <p>
                 {{ status.length }} 个存储对象，
-                总计空间 <code>{{ humanFileSize(getFullSize()) }}</code>
-                ( 空闲 <code>{{ humanFileSize(getFreeSize()) }}</code> ,
-                已使用 <code>{{ humanFileSize(getUsedSize()) }}</code> ,
-                回收站 <code>{{ humanFileSize(getTrashedSize()) }}</code>
+                总计空间 <code>{{ getFullSize() | humanFileSize }}</code>
+                ( 空闲 <code>{{ getFreeSize() | humanFileSize }}</code> ,
+                已使用 <code>{{ getUsedSize() | humanFileSize }}</code> ,
+                回收站 <code>{{ getTrashedSize() | humanFileSize }}</code>
                 )
             </p>
 
@@ -24,7 +24,6 @@
 
 <script>
   const axios = require('axios').default;
-
 
   export default {
     name: "Status",
@@ -48,11 +47,6 @@
 
       getFullSize() {
         return this.status.map((a) => {return a.status.total}).reduce((a,b) => {return a + b});
-      },
-
-      humanFileSize(size) {
-        let i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
-        return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
       },
 
       getStatus() {

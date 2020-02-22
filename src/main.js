@@ -13,19 +13,6 @@ Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
-// 1. 定义 (路由) 组件。
-// 可以从其他文件 import 进来
-
-
-// 2. 定义路由
-// 每个路由应该映射一个组件。 其中"component" 可以是
-// 通过 Vue.extend() 创建的组件构造器，
-// 或者，只是一个组件配置对象。
-// 我们晚点再讨论嵌套路由。
-
-
-// 3. 创建 router 实例，然后传 `routes` 配置
-// 你还可以传别的配置参数, 不过先这么简单着吧。
 const routers = new VueRouter({
   routes // (缩写) 相当于 routes: routes
 });
@@ -39,6 +26,10 @@ routers.afterEach(() => {
   ViewUI.LoadingBar.finish();
 });
 
+Vue.filter('humanFileSize', function (size) {
+  let i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
+  return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+});
 
 new Vue({
   render: h => h(App),
