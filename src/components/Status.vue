@@ -6,6 +6,7 @@
                 总计空间 <code>{{ getFullSize() | humanFileSize }}</code>
                 ( 空闲 <code>{{ getFreeSize() | humanFileSize }}</code> ,
                 已使用 <code>{{ getUsedSize() | humanFileSize }}</code> ,
+                历史冗余 <code>{{ getRedundancySize() | humanFileSize }}</code> ,
                 回收站 <code>{{ getTrashedSize() | humanFileSize }}</code>
                 )
             </p>
@@ -35,6 +36,10 @@
     methods: {
       getFreeSize() {
         return this.status.map((a) => {return a.status.free}).reduce((a,b) => {return a + b});
+      },
+
+      getRedundancySize() {
+        return this.getFullSize() - this.getUsedSize() - this.getFreeSize() - this.getTrashedSize();
       },
 
       getUsedSize() {
