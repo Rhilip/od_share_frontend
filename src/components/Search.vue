@@ -2,7 +2,8 @@
     <div style="margin: auto">
         <Row>
             <Col span="16" offset="4">
-                <Input search enter-button placeholder="Enter something..." v-model="search_key" @on-search="updateItems" />
+                <Input search enter-button placeholder="Enter something..." v-model="search_key" autofocus
+                       @on-search="updateItems" @on-change="cleanSearchData" />
             </Col>
         </Row>
         <Row style="margin-top: 30px;">
@@ -10,7 +11,7 @@
                 <Table stripe :columns="search_columns" :data="search_data"
                        :loading="search_load"
                        no-data-text="搜索失败，请更换关键词"/>
-                <Button type="primary" style="margin-top: 10px" :loading="search_load" @click="updateItems">下一页</Button>
+                <Button type="primary" style="margin-top: 10px" v-if="!search_load" @click="updateItems">下一页</Button>
             </Col>
         </Row>
     </div>
@@ -62,8 +63,11 @@
       }
     },
     methods: {
+      cleanSearchData() {
+        this.search_data = []
+      },
+
       updateItems() {
-        this.search_data = [];
         this.search_load = true;
         this.$Loading.start();
         axios.get(`//share-api.rhilip.info/search${this.search_key ? '/' + this.search_key : ''}`,{
