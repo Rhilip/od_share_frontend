@@ -10,6 +10,7 @@
                 <Table stripe :columns="search_columns" :data="search_data"
                        :loading="search_load"
                        no-data-text="搜索失败，请更换关键词"/>
+                <Button type="primary" style="margin-top: 10px" :loading="search_load" @click="updateItems">下一页</Button>
             </Col>
         </Row>
     </div>
@@ -22,6 +23,8 @@
     name: "Search",
     data() {
       return {
+        offset: 0,
+        limit: 50,
         search_key : '',
         search_data: [],
         search_load: false,
@@ -63,10 +66,16 @@
         this.search_data = [];
         this.search_load = true;
         this.$Loading.start();
-        axios.get(`//share-api.rhilip.info/search${this.search_key ? '/' + this.search_key : ''}`).then((response) => {
+        axios.get(`//share-api.rhilip.info/search${this.search_key ? '/' + this.search_key : ''}`,{
+          params: {
+            limit: this.limit,
+            offset: this.offset,
+          }
+        }).then((response) => {
           this.search_load = false;
           this.$Loading.finish();
-          this.search_data = response.data.data;
+          this.search_data.concat(response.data.data);
+          this.offset += 50;
         }).catch((error) => {
           this.search_load = false;
           this.$Loading.error();
