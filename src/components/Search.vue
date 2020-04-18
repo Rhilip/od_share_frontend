@@ -74,7 +74,7 @@
         }).then((response) => {
           this.search_load = false;
           this.$Loading.finish();
-          this.search_data.concat(response.data.data);
+          this.search_data = this.search_data.concat(response.data.data);
           this.offset += 50;
         }).catch((error) => {
           this.search_load = false;
