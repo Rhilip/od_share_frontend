@@ -9,9 +9,9 @@
         <Row style="margin-top: 30px;">
             <Col span="20" offset="2">
                 <Table stripe :columns="search_columns" :data="search_data"
-                       :loading="search_load"
+                       :loading="search_data.length === 0 && search_load"
                        no-data-text="搜索失败，请更换关键词"/>
-                <Button type="primary" style="margin-top: 10px" v-if="!search_load" @click="updateItems">下一页</Button>
+                <Button type="primary" style="margin-top: 10px" :loading="search_load" @click="updateItems">下一页</Button>
             </Col>
         </Row>
     </div>
