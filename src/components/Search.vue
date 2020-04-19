@@ -11,7 +11,7 @@
                 <Table stripe :columns="search_columns" :data="search_data"
                        :loading="search_data.length === 0 && search_load"
                        no-data-text="搜索失败，请更换关键词"/>
-                <Button type="primary" style="margin-top: 10px" :loading="search_load" @click="updateItems">下一页</Button>
+                <Button type="primary" style="margin-top: 10px" v-if="!disable_load" :loading="search_load" @click="updateItems">下一页</Button>
             </Col>
         </Row>
     </div>
@@ -29,6 +29,7 @@
         search_key : '',
         search_data: [],
         search_load: false,
+        disable_load: false,
         search_columns: [
           {
             title: "标题", key: "title", ellipsis: true,
@@ -64,7 +65,9 @@
     },
     methods: {
       cleanSearchData() {
-        this.search_data = []
+        this.search_data = [];
+        this.limit = 50;
+        this.offset = 0;
       },
 
       updateItems() {
@@ -82,6 +85,7 @@
           this.offset += 50;
         }).catch((error) => {
           this.search_load = false;
+          this.disable_load = true;
           this.$Loading.error();
           console.log(error.message);
         })
