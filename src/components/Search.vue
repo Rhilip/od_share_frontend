@@ -45,7 +45,6 @@
                 }
               }, params.row.title);
             },
-
           },
           {
             title: "大小", key: "size", width: 120, align: "right",

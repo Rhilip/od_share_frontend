@@ -15,7 +15,7 @@
                 <Col v-for="(pan,index) in status" :key="index" span="6" style="margin-top: 15px;">
                     <p><b>{{ pan.id }}</b></p>
                     <Progress :percent="parseFloat((pan.status.used / pan.status.total * 100).toFixed(2))"
-                              :stroke-width="20" status="active" text-inside/>
+                              :stroke-width="20" :status="pan.enabled ? 'active' : 'normal'" text-inside/>
 
                 </Col>
             </Row>
