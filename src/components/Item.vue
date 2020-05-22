@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div v-else>
-                    未获取到档案信息，请重新检查
+                    未获取到档案信息，可能该资源已被删除。
                 </div>
             </div>
         </Card>
@@ -51,6 +51,8 @@
         axios.get(`//share-api.rhilip.info/items/${this.$route.params.uuid}`).then((response) => {
           this.loading = false;
           this.item = response.data.data;
+        }).catch((error) => {
+          this.loading = false;
         });
       }
     }
