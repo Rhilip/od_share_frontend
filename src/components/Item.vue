@@ -52,6 +52,7 @@
           this.loading = false;
           this.item = response.data.data;
         }).catch((error) => {
+          console.log(error);
           this.loading = false;
         });
       }
